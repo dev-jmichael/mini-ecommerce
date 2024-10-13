@@ -8,11 +8,18 @@ services:
     container_name: auth-service
     environment:
       - NODE_ENV=development
+      - POSTGRES_HOST=auth-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=auth_user
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=auth_db
     ports:
       - "3001:3001"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+    depends_on:
+      - auth-db
 
   product-catalog:
     build:
@@ -23,7 +30,6 @@ services:
     container_name: product-catalog-service
     environment:
       - NODE_ENV=development
-
     ports:
       - "3002:3002"
     volumes:
@@ -74,3 +80,34 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+
+  auth-db:
+    image: postgres:17.0-alpine3.20
+    container_name: auth-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: auth_user
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: auth_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: local@host.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80" # Access pgAdmin via localhost:8080
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - auth-db
+
+volumes:
+  auth_db_data:
+  pgadmin_data:
