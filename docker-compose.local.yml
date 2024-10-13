@@ -1,0 +1,76 @@
+services:
+  auth:
+    build:
+      context: .
+      dockerfile: ./src/apps/auth/Dockerfile
+      target: development
+    command: sh -c "cd src/apps/auth && npm run start:dev"
+    container_name: auth-service
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  product-catalog:
+    build:
+      context: .
+      dockerfile: ./src/apps/product-catalog/Dockerfile
+      target: development
+    command: sh -c "cd src/apps/product-catalog && npm run start:dev"
+    container_name: product-catalog-service
+    environment:
+      - NODE_ENV=development
+
+    ports:
+      - "3002:3002"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  order:
+    build:
+      context: .
+      dockerfile: ./src/apps/order/Dockerfile
+      target: development
+    command: sh -c "cd src/apps/order && npm run start:dev"
+    container_name: order-service
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3003:3003"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  inventory:
+    build:
+      context: .
+      dockerfile: ./src/apps/inventory/Dockerfile
+      target: development
+    command: sh -c "cd src/apps/inventory && npm run start:dev"
+    container_name: inventory-service
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3004:3004"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  payment:
+    build:
+      context: .
+      dockerfile: ./src/apps/payment/Dockerfile
+      target: development
+    command: sh -c "cd src/apps/payment && npm run start:dev"
+    container_name: payment-service
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3005:3005"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
