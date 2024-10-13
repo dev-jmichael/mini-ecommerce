@@ -60,41 +60,40 @@ $ npm run test:cov
 
 ## Setup Your PostgreSQL Database in pgAdmin (For First-Time Setup or After Deleting Docker Volumes)
 
-```bash
 1. Access pgAdmin:
 
-* Open your browser and navigate to http://localhost:8080.
+  * Open your browser and navigate to http://localhost:8080.
 
 2. Login to pgAdmin:
 
-* Email: local@host.com
-* Password: admin
+  * Email: local@host.com
+  * Password: admin
 
 3. Register a New Server:
 
-* Right-click on Servers in the left panel.
-* Select Register -> Server....
+  * Right-click on Servers in the left panel.
+  * Select Register -> Server....
 
 4. Enter Server Details:
 
-* Name: Enter the database name (this corresponds to the POSTGRES_DB value from docker-compose.local.yml). For example, auth_db or product_catalog_db.
+  * Name: Enter the database name (this corresponds to the POSTGRES_DB value from docker-compose.local.yml). For example, auth_db or product_catalog_db.
 
 5. Configure Connection:
 
 * Switch to the Connection tab and enter the following values:
-** Host name/address: Enter the service name from docker-compose.local.yml (e.g., auth-db, product-catalog-db).
-** Port: 5432 (internal port for PostgreSQL within the container).
-** Username: The POSTGRES_USER value from docker-compose.local.yml (e.g., auth_user, product_catalog_user).
-** Password: The POSTGRES_PASSWORD value from docker-compose.local.yml (e.g., postgres).
+  * Host name/address: Enter the service name from docker-compose.local.yml (e.g., auth-db, product-catalog-db).
+  * Port: 5432 (internal port for PostgreSQL within the container).
+  * Username: The POSTGRES_USER value from docker-compose.local.yml (e.g., auth_user, product_catalog_user).
+  * Password: The POSTGRES_PASSWORD value from docker-compose.local.yml (e.g., postgres).
 
 6. Save:
 
-* Click Save to register the server.
+  * Click Save to register the server.
 
 7. Repeat for Each Database:
 
-* Repeat steps 3-6 for each service/database defined in your docker-compose.local.yml (e.g., auth-db, product-catalog-db, etc.).
-```
+  * Repeat steps 3-6 for each service/database defined in your docker-compose.local.yml (e.g., auth-db, product-catalog-db, etc.).
+
 
 ## Support
 
