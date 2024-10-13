@@ -4,7 +4,7 @@
 
 # Step 1: Bring down the current Docker Compose services
 echo "Bringing down existing Docker Compose services..."
-docker-compose -f docker-compose.local.yml down -v
+docker-compose -f docker-compose.local.yml down
 
 # Step 2: Pull the latest images (if using an external registry or updated Dockerfiles)
 echo "Pulling latest images..."
